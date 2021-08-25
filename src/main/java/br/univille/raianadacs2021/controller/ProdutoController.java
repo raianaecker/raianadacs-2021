@@ -53,7 +53,7 @@ public class ProdutoController {
 
         return new ModelAndView("produto/index","listaProdutos",listaProdutos);
     }
-    
+
     @GetMapping("/novo")
     public ModelAndView novo(@ModelAttribute Produto produto){
         HashMap<String,Object> dados = new HashMap<>();
