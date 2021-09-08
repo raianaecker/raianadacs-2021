@@ -28,11 +28,11 @@ import br.univille.raianadacs2021.service.CategoriaService;
 @RequestMapping("/categoria")
 public class CategoriaController {
     @Autowired
-    private CategoriaService service;
+    private CategoriaService categoriaService;
 
     @GetMapping
     public ModelAndView index(){
-        List<Categoria> listaCategoria = service.getAllCategorias();
+        List<Categoria> listaCategoria = categoriaService.getAllCategorias();
 
         return new ModelAndView("categoria/index","listaCategorias",listaCategoria);
     }
@@ -44,7 +44,7 @@ public class CategoriaController {
 
     @PostMapping(params = "form")
     public ModelAndView save(Categoria categoria){
-        service.save(categoria);
+        categoriaService.save(categoria);
         return new ModelAndView("redirect:/categoria");
     }
 
@@ -55,7 +55,7 @@ public class CategoriaController {
 
     @GetMapping(value = "/delete/{id}")
     public ModelAndView delete(@PathVariable("id") Categoria categoria){
-        service.delete(categoria);
+        categoriaService.delete(categoria);
         return new ModelAndView("redirect:/categoria");
     }
 }
