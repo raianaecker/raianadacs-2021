@@ -10,7 +10,7 @@ import br.univille.raianadacs2021.repository.FornecedorRepository;
 import br.univille.raianadacs2021.service.FornecedorService;
 
 @Service
-public class FornecedorServiceImpl implements FornecedorService {
+public class FornecedorServiceImpl implements FornecedorService{
 
     @Autowired
     private FornecedorRepository repository;
@@ -18,16 +18,6 @@ public class FornecedorServiceImpl implements FornecedorService {
     @Override
     public List<Fornecedor> getAllFornecedores() {
         return repository.findAll();
-    }
-
-    @Override
-    public Fornecedor save(Fornecedor fornecedor) {
-        return repository.save(fornecedor);
-    }
-
-    @Override
-    public void delete(Fornecedor fornecedor) {
-        repository.delete(fornecedor);
     }
 
 }
