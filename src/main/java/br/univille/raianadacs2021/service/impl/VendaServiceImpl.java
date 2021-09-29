@@ -30,5 +30,5 @@ public class VendaServiceImpl implements VendaService {
     public void delete(Venda venda) {
         repository.delete(venda);
     }
-
+    
 }

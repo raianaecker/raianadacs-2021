@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.univille</groupId>
-	<artifactId>raianacosta2021</artifactId>
+	<artifactId>raianadacs2021</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>raianacosta2021</name>
+	<name>raianadacs2021</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -56,17 +56,24 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
-			<version>5.1.0</version>
+			<version>4.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
-			<version>3.6.0</version>
+			<version>3.0.0</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>bootbox.js</artifactId>
 			<version>4.4.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -84,7 +91,6 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.8</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+    
     <head th:include="layout :: htmlhead"></head>
-
+    
     <body>
         <div class="container">
 			<nav th:replace="layout :: menu">(menu)</nav>
-
-            <a th:href="@{/venda/novo}" class="btn btn-primary"> Nova Venda </a>
+            
+            <a th:href="@{/venda/novo}" class="btn btn-primary">  Nova Venda  </a>
 
             <table class="table" id="vendas">
                 <thead>
@@ -57,4 +57,4 @@
         </script> 
 
     </body>
-</html>
+</html> 

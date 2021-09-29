@@ -18,6 +18,7 @@ public class HomeController {
     
     @GetMapping
     public ModelAndView index(){
+        /*logica muito doida! */
 
         Date dataAgora = new Date();
         SimpleDateFormat sdf 
@@ -30,5 +31,6 @@ public class HomeController {
         return new ModelAndView("home/index", dados);
         //return new ModelAndView("home/index", "tempo", sdf.format(dataAgora));
     }
+    
     
 }

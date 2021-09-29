@@ -21,9 +21,40 @@ import br.univille.raianadacs2021.model.Produto;
 @Controller
 @RequestMapping("/import-produto")
 public class ImportadorProdutoController {
-
+    
     @GetMapping
     public ModelAndView index(){
+
+        try {
+            URL endereco = new URL("http://1b22-186-237-248-5.ngrok.io/api/v1/produtos");
+            HttpURLConnection conn = (HttpURLConnection)endereco.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            int responseCode = conn.getResponseCode();
+            System.out.println(responseCode);
+            Scanner leitor = new Scanner(endereco.openStream());
+            
+            StringBuilder jsonText = new StringBuilder();
+            while(leitor.hasNext()){
+                jsonText.append(leitor.nextLine());
+            }
+
+            Gson gson = new Gson();
+           
+            Type typeListProdutos = new TypeToken<ArrayList<Produto>>(){}.getType();
+            ArrayList<Produto> listaProdutos = gson.fromJson(jsonText.toString(), typeListProdutos);
+            
+            for(Produto umProduto : listaProdutos){
+                System.out.println(umProduto.getDescricao());
+            }
+            
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return new ModelAndView("/importproduto/index");
     }

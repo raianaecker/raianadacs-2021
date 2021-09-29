@@ -12,5 +12,5 @@ import br.univille.raianadacs2021.model.Categoria;
  */
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria,Long>{
-
+    
 }

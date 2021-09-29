@@ -1,61 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+    <head th:include="layout :: htmlhead"></head>
+    
+    <body>
+        <div class="container">
+			<nav th:replace="layout :: menu">(menu)</nav>
+            
+            <a th:href="@{/produto/novo}" class="btn btn-primary">  Novo  </a>
 
-<head th:include="layout :: htmlhead"></head>
+            <table class="table" id="produtos">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Data</th>
+                        <th>Categoria</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="umproduto : ${listaProdutos}">
+                        <td th:text="${umproduto.descricao}"></td>
+                        <td th:text="${umproduto.preco}"></td>
+                        <td th:text="${umproduto.dataRegistro}"></td>
+                        <td th:text="${umproduto.categoria}"></td>
+                        <td>
+                            <a th:href="@{'/produto/alterar/'+${umproduto.id}}" class="btn btn-primary">Alterar</a>
+                            <button class="btn btn-danger js-delete" 
+                                    th:data-id="${umproduto.id}" >Excluir</button>                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
 
-<body>
-    <div class="container">
-        <nav th:replace="layout :: menu">(menu)</nav>
-        <a th:href="@{/produto/novo}" class="btn btn-primary"> Novo </a>
-        <table class="table" id="produtos">
-            <thead>
-                <tr>
-                    <th>Descrição</th>
-                    <th>Preço</th>
-                    <th>Data</th>
-                    <th>Categoria</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="umproduto : ${listaProdutos}">
-                    <td th:text="${umproduto.descricao}"></td>
-                    <td th:text="${umproduto.preco}"></td>
-                    <td th:text="${umproduto.dataRegistro}"></td>
-                    <td th:text="${umproduto.categoria}"></td>
-                    <td>
-                        <a th:href="@{'/produto/alterar/'+${umproduto.id}}" class="btn btn-primary">Alterar</a>
-                        <button class="btn btn-danger js-delete"
-                                th:data-id="${umproduto.id}">
-                            Excluir
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div th:include="layout :: footer" id="footer">(footer)</div>
+        </div>
+        <div th:include="layout :: footer" id="footer">(footer)</div>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#produtos").on("click", ".js-delete", function() {
-                let button = $(this)
-                bootbox.confirm("Cê confirma isso ae meu?", function(result) {
-                    if(result) {
-                        $.ajax({
-                            url: "/produto/delete/" + button.attr("data-id"),
-                            method: "GET",
-                            success: function() {
-                                window.location.href= "/produto/";
-                            }
-                        });
-                    } else {
+        <script type="text/javascript">
 
-                    }
+            $(document).ready(function(){
+                $("#produtos").on("click",".js-delete", function(){
+                    let button = $(this);
+                    bootbox.confirm("Você confirma a exclusão do registro?", function(result){
+                        if(result){
+                            $.ajax({
+                                url : "/produto/delete/" + button.attr("data-id"),
+                                method : "GET",
+                                success : function(){
+                                    window.location.href = "/produto/";
+                                }
+                            });
+                        }
+                    });
                 });
             });
-        });
-    </script>
-</body>
+        </script>
 
-</html>
+
+    </body>
+</html> 

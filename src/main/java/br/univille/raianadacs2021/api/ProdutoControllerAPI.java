@@ -15,51 +15,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.univille.raianadacs2021.model.Produto;
 import br.univille.raianadacs2021.service.ProdutoService;
+import io.swagger.models.Response;
+
 
 @RestController
 @RequestMapping("/api/v1/produtos")
 public class ProdutoControllerAPI {
-
+    
     @Autowired
-    private ProdutoService produtoService;
+    private ProdutoService service;
 
     @GetMapping
-    public ResponseEntity<List<Produto>> getAll() {
-        try {
-            return new ResponseEntity<List<Produto>>(produtoService.getAllProdutos(), HttpStatus.OK);
-        } catch (Exception ex) {
+    public ResponseEntity<List<Produto>> getAll(){
+        try{
+            List<Produto> listaProdutos = service.getAllProdutos();
+            return new ResponseEntity<List<Produto>>(listaProdutos, HttpStatus.OK);
+        }catch (Exception ex){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> getById(
-        @PathVariable("id") Produto produto) { 
-            try {
-                return new ResponseEntity<Produto>(produto, HttpStatus.OK);
-            } catch (Exception exception) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Produto> getById(@PathVariable("id") Produto produto){
+        try{
+            return new ResponseEntity<Produto>(produto,HttpStatus.OK);
+        }catch (Exception ex){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-    @PostMapping()
-    public ResponseEntity<Produto> saveProduct(@RequestBody Produto produto) {
-        try {
+    
+    @PostMapping
+    public ResponseEntity<Produto> save(@RequestBody Produto produto){
+        try{
             produto.setId(0);
-            produtoService.save(produto);
-            return new ResponseEntity<Produto>(produto, HttpStatus.CREATED);
-        } catch (Exception exception) {
+            service.save(produto);
+            return new ResponseEntity<Produto>(produto,HttpStatus.CREATED);
+        }catch(Exception ex){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Produto> deleteProductById(
-        @PathVariable("id") Produto produto) {
-        try {
-            produtoService.delete(produto);
-            return new ResponseEntity<Produto>(produto, HttpStatus.OK);
-        } catch (Exception exception) {
+    public ResponseEntity<Produto> delete(@PathVariable("id") Produto produto){
+        try{
+            service.delete(produto);
+            return new ResponseEntity<Produto>(produto,HttpStatus.OK);
+        }catch(Exception ex){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -71,10 +72,11 @@ public class ProdutoControllerAPI {
         produtoAntigo.setPreco(produtoAlterado.getPreco());
         produtoAntigo.setDataRegistro(produtoAlterado.getDataRegistro());
         produtoAntigo.setCategoria(produtoAlterado.getCategoria());
-
+        
         service.save(produtoAntigo);
 
         return new ResponseEntity<Produto>(produtoAntigo,HttpStatus.OK);
 
     }
+
 }

@@ -7,5 +7,5 @@ import br.univille.raianadacs2021.model.Venda;
 
 @Repository
 public interface VendaRepository extends JpaRepository<Venda,Long>{
-
+    
 }

@@ -7,15 +7,14 @@ import javax.persistence.Id;
 
 @Entity
 public class Fornecedor {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    private String API_PATH;
-    private String API_AUTH_PATH;
-    private String user;
-    private String password;
+    private String nome;
+    private String urlAPI;
+    private String urlAPIAuth;
+    private String usuario;
+    private String senha;
     
     public long getId() {
         return id;
@@ -23,37 +22,37 @@ public class Fornecedor {
     public void setId(long id) {
         this.id = id;
     }
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-    public String getAPI_PATH() {
-        return API_PATH;
+    public String getUrlAPI() {
+        return urlAPI;
     }
-    public void setAPI_PATH(String aPI_PATH) {
-        API_PATH = aPI_PATH;
+    public void setUrlAPI(String urlAPI) {
+        this.urlAPI = urlAPI;
     }
-    public String getAPI_AUTH_PATH() {
-        return API_AUTH_PATH;
+    public String getUrlAPIAuth() {
+        return urlAPIAuth;
     }
-    public void setAPI_AUTH_PATH(String aPI_AUTH_PATH) {
-        API_AUTH_PATH = aPI_AUTH_PATH;
+    public void setUrlAPIAuth(String urlAPIAuth) {
+        this.urlAPIAuth = urlAPIAuth;
     }
-    public String getUser() {
-        return user;
+    public String getUsuario() {
+        return usuario;
     }
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
-    public String getPassword() {
-        return password;
+    public String getSenha() {
+        return senha;
     }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-
+    
     
 }

@@ -57,12 +57,13 @@ public class Venda {
     public void setCupom(String cupom) {
         this.cupom = cupom;
     }
-
     public List<ItemVenda> getColItemVenda() {
         return colItemVenda;
     }
     public void setColItemVenda(List<ItemVenda> colItemVenda) {
         this.colItemVenda = colItemVenda;
     }
-         
+
+        
+    
 }

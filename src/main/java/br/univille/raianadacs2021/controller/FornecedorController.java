@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/fornecedor")
 public class FornecedorController {
-
+    
     @GetMapping
     public ModelAndView index(){
 

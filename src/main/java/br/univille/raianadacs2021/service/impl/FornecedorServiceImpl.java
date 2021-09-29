@@ -11,7 +11,7 @@ import br.univille.raianadacs2021.service.FornecedorService;
 
 @Service
 public class FornecedorServiceImpl implements FornecedorService{
-
+    
     @Autowired
     private FornecedorRepository repository;
 
@@ -19,5 +19,5 @@ public class FornecedorServiceImpl implements FornecedorService{
     public List<Fornecedor> getAllFornecedores() {
         return repository.findAll();
     }
-
+    
 }

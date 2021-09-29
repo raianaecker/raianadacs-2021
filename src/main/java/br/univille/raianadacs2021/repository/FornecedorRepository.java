@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import br.univille.raianadacs2021.model.Fornecedor;
 
 @Repository
-public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
-
+public interface FornecedorRepository extends JpaRepository<Fornecedor,Long>{
+    
 }

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+    
     <head th:include="layout :: htmlhead"></head>
-
+    
     <body>
         <div class="container">
 			<nav th:replace="layout :: menu">(menu)</nav>
-            <a th:href="@{/categoria/novo}" class="btn btn-primary"> Novo </a>
-
+            <a th:href="@{/categoria/novo}" class="btn btn-primary">  Novo  </a>
             <table class="table" id="categorias">
                 <thead>
                     <tr>
@@ -22,7 +21,7 @@
                         <td>
                             <a th:href="@{'/categoria/alterar/'+${umacategoria.id}}" class="btn btn-primary">Alterar</a>
                             <button class="btn btn-danger js-delete" 
-                                    th:data-id="${umacategoria.id}" >Excluir</button>  
+                                    th:data-id="${umacategoria.id}" >Excluir</button>    
                         </td>
                     </tr>
                 </tbody>
@@ -49,6 +48,5 @@
                 });
             });
         </script>
-
     </body>
 </html> 

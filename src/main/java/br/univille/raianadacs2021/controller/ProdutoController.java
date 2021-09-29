@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.univille.walterdacs2021.model.Categoria;
+import br.univille.raianadacs2021.model.Categoria;
 import br.univille.raianadacs2021.model.Produto;
-import br.univille.walterdacs2021.service.CategoriaService;
+import br.univille.raianadacs2021.service.CategoriaService;
 import br.univille.raianadacs2021.service.ProdutoService;
 
 @Controller
@@ -27,20 +27,22 @@ public class ProdutoController {
     private ProdutoService service;
     @Autowired
     private CategoriaService categoriaService;
-
+    
     /* 
     Date aniversario = new Date();
+
     Atributo - Variavel
     public/private tipo nome;
     Método - Função
     public tipo nome (parametros) { corpo } */
-    
-     @GetMapping
+
+    @GetMapping
     public ModelAndView index(){
         /*Produto prod1 = new Produto();
         prod1.setDescricao("Produto legal 1");
         prod1.setDataRegistro(new Date());
         prod1.setPreco(2000);
+
         Produto prod2 = new Produto();
         prod2.setDescricao("Produto legal 2");
         prod2.setDataRegistro(new Date());
@@ -53,7 +55,6 @@ public class ProdutoController {
 
         return new ModelAndView("produto/index","listaProdutos",listaProdutos);
     }
-
     @GetMapping("/novo")
     public ModelAndView novo(@ModelAttribute Produto produto){
         HashMap<String,Object> dados = new HashMap<>();

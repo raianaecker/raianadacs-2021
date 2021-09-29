@@ -13,21 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.univille.walterdacs2021.model.ItemVenda;
-import br.univille.walterdacs2021.model.Produto;
+import br.univille.raianadacs2021.model.ItemVenda;
+import br.univille.raianadacs2021.model.Produto;
 import br.univille.raianadacs2021.model.Venda;
-import br.univille.walterdacs2021.service.ProdutoService;
+import br.univille.raianadacs2021.service.ProdutoService;
 import br.univille.raianadacs2021.service.VendaService;
 
 @Controller
 @RequestMapping("/venda")
 public class VendaController {
-
+    
     @Autowired
     private VendaService service;
     @Autowired
     private ProdutoService produtoService;
-
     @GetMapping
     public ModelAndView index(){
         List<Venda> listaVendas = service.getAllVendas();
@@ -38,7 +37,6 @@ public class VendaController {
     public ModelAndView novo(@ModelAttribute Venda venda){
         HashMap<String,Object> dados = new HashMap<>();
         List<Produto> listaProdutos = produtoService.getAllProdutos();
-
         dados.put("venda",venda);
         dados.put("listaProdutos",listaProdutos);
         dados.put("novoitemvenda", new ItemVenda());
@@ -47,6 +45,7 @@ public class VendaController {
 
     @PostMapping()
     public ModelAndView save(Venda venda){
+
         venda.setValorTotal(venda.getColItemVenda().stream().reduce( 0f, (acumulador, item) -> acumulador + item.getValor(),Float::sum));
         service.save(venda);
         return new ModelAndView("redirect:/venda");
@@ -83,7 +82,7 @@ public class VendaController {
         return new ModelAndView("venda/form",dados);
     }
 
-     @GetMapping("/alterar/{id}")
+    @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") Venda venda){
         HashMap<String,Object> dados = new HashMap<>();
         List<Produto> listaProdutos = produtoService.getAllProdutos();
