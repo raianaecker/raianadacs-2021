@@ -6,6 +6,14 @@ import org.springframework.stereotype.Service;
 import br.univille.raianadacs2021.model.Produto;
 import br.univille.raianadacs2021.repository.ProdutoRepository;
 import br.univille.raianadacs2021.service.ProdutoService;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Scanner;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService{
@@ -26,5 +34,39 @@ public class ProdutoServiceImpl implements ProdutoService{
     @Override
     public void delete(Produto produto) {
        repository.delete(produto);
+    }
+
+    @Override
+    public List<Produto> importProduto(Fornecedor fornecedor) {
+        if(fornecedor != null){
+            try {
+            URL endereco = new URL(fornecedor.getUrlAPI());
+            HttpURLConnection conn = (HttpURLConnection)endereco.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            int responseCode = conn.getResponseCode();
+
+            if(responseCode == 200){
+                Scanner leitor = new Scanner(endereco.openStream());
+                StringBuilder jsonText = new StringBuilder();
+                while(leitor.hasNext()){
+                    jsonText.append(leitor.nextLine());
+                }
+
+                Gson gson = new Gson();
+            
+                Type typeListProdutos = new TypeToken<ArrayList<Produto>>(){}.getType();
+                ArrayList<Produto> listaProdutos = gson.fromJson(jsonText.toString(), typeListProdutos);
+                return listaProdutos;
+            }
+            
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        }
+        return new ArrayList<Produto>();
     }
 }
