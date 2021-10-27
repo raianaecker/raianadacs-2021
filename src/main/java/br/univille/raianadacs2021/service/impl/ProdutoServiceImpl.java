@@ -1,8 +1,12 @@
 package br.univille.raianadacs2021.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import br.univille.raianadacs2021.model.Fornecedor;
 import br.univille.raianadacs2021.model.Produto;
 import br.univille.raianadacs2021.repository.ProdutoRepository;
 import br.univille.raianadacs2021.service.ProdutoService;
